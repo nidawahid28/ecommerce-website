@@ -2,8 +2,12 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { FiShoppingCart, FiUser, FiMenu, FiX, FiSearch } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/Store";
 
 const Navbar = () => {
+
+  const item = useSelector((state: RootState) => state.cart);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -45,7 +49,8 @@ const Navbar = () => {
             className="bg-transparent focus:outline-none text-sm placeholder-gray-500"
           />
         </div>
-        <FiShoppingCart className="text-2xl cursor-pointer" />
+        <Link href="/cart"><FiShoppingCart className="text-2xl cursor-pointer mr-2" /></Link>
+        {item.length}
         <FiUser className="text-2xl cursor-pointer" />
       </div>
     </nav>
